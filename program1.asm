@@ -23,6 +23,7 @@ remainderholder	DWORD	?
 instructions	BYTE	"Enter 2 numbers, and I'll show you the sum, difference, product, quotient, and remainder. ", 0
 extracredit		BYTE	"Press (1) to continue or (2) to exit ", 0
 lessextra		BYTE	"The second number must be less than the first! ", 0
+divextra		BYTE	"Calculated and displaying the quotient as a floating-point number", 0
 entryone		DWORD	?
 entrytwo		DWORD	?
 plusresult		DWORD	?
@@ -30,6 +31,9 @@ minusresult		DWORD	?
 multiplicationresult	DWORD	?
 divisionresult	DWORD	?
 extracinput		DWORD	?
+extradecimal	REAL8	?
+extraround		dword	1
+
 
 ; (insert variable definitions here)
 
@@ -68,7 +72,13 @@ jmp plusultra
 
 UA:
 ;calculations
+
 ;division
+fild	entrytwo
+fild	entryone
+fdiv	st(0),st(1)
+fstp	extradecimal
+
 mov	eax, entryone
 cdq
 mov	ebx, entrytwo
@@ -93,7 +103,6 @@ mov eax, entryone
 mov ebx, entrytwo
 sub eax, ebx
 mov minusresult, eax
-
 
 ; report results
 ;addition
@@ -151,6 +160,21 @@ call	writestring
 mov eax, remainderholder
 call	writedec
 call	crlf
+
+mov	edx, OFFSET	divextra
+call	writestring
+call	crlf
+mov	eax, entryone
+call	 Writedec
+mov	edx, OFFSET division
+call	WriteString
+mov eax, entrytwo
+call	Writedec
+mov edx, OFFSET equals
+call	writestring
+fld		extradecimal
+call	writefloat
+call crlf
 
 mov	eax, extracinput
 cmp	eax, 1
