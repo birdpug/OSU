@@ -25,7 +25,7 @@ int main()
 	printf("Ok, the area is ");
 
 	printf("%d", ferret);
-
+	scanf_s("%d", &rat);
 
 	return 0;
 }
