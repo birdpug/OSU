@@ -15,7 +15,7 @@ int main()
 	printf("Ok, Please enter a number that would be the length of the next side of your triangle.\n");
 	scanf("%d", &rat);
 
-	double ferret = dog + mouse + rat;
+	int ferret = dog + mouse + rat;
 	ferret = ferret / 2;
 	dog = ferret - dog;
 	mouse = ferret - mouse;
@@ -25,7 +25,6 @@ int main()
 	printf("Ok, the area is ");
 
 	printf("%d", ferret);
-	scanf("%d", &rat);
-
+	
 	return 0;
 }
