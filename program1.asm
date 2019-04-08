@@ -31,8 +31,8 @@ minusresult		DWORD	?
 multiplicationresult	DWORD	?
 divisionresult	DWORD	?
 extracinput		DWORD	?
-extradecimal	REAL8	?
-extraround		dword	1
+extradecimal	dword	?
+extraround		dword	1000
 
 
 ; (insert variable definitions here)
@@ -52,6 +52,9 @@ call	readint
 mov	extracinput, eax
 cmp	eax, 2
 je	exi
+jg	plusultra
+cmp	eax, 1
+jl	plusultra
 
 ; instruction and introduction
 	mov	edx, OFFSET	instructions
@@ -74,10 +77,16 @@ UA:
 ;calculations
 
 ;division
-fild	entrytwo
 fild	entryone
-fdiv	st(0),st(1)
+fild	entrytwo
+fdiv	
+fild	extraround
+fmul
+frndint
+fild	extraround
+fdiv
 fstp	extradecimal
+
 
 mov	eax, entryone
 cdq
@@ -180,7 +189,7 @@ mov	eax, extracinput
 cmp	eax, 1
 je plusultra
 exi:
-	exit	; exit to operating system
+exit	; exit to operating system
 main ENDP
 
 ; (insert additional procedures here)
