@@ -1,0 +1,15 @@
+#inner-content{
+    background-color: aqua;
+    margin: auto;
+    width: 42%;
+    height: 30px; 
+    padding: 5px 0;
+    
+}
+#div1{
+    background-color: pink;
+    width: 75%;
+    height: 40px;
+    top:350;
+    left: 0px;
+}
